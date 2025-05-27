@@ -1,0 +1,23 @@
+.equation-input {
+    transition: all 0.3s ease;
+}
+
+.equation-input:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.graph-container {
+    background-color: #f8fafc;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.axis-label {
+    font-size: 0.875rem;
+    fill: #64748b;
+}
+
+.grid-line {
+    stroke: #e2e8f0;
+    stroke-width: 1;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Plotter - Visualizador de Funções</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.7.0/math.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-indigo-700 mb-2">XGraph</h1>
+            <p class="text-lg text-gray-600">Verifique o gráfico da função(x)</p>
+        </header>
+
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6 mb-8">
+            <div class="mb-6">
+                <label for="equation" class="block text-sm font-medium text-gray-700 mb-2">Digite sua função</label>
+                <div class="flex">
+                    <input type="text" id="equation" placeholder="Ex: 2x + 3" 
+                           class="equation-input flex-1 px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button onclick="plotGraph()" 
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-r-md transition duration-300">
+                        Criar Gráfico
+                    </button>
+                </div>
+                <p class="mt-2 text-sm text-gray-500">Use 'x' como variável. Operadores: + - * / ^</p>
+            </div>
+
+            <div class="graph-container p-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Gráfico da Função</h2>
+                    <div class="flex space-x-2">
+                        <button onclick="zoomIn()" class="bg-gray-200 hover:bg-gray-300 p-2 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button onclick="zoomOut()" class="bg-gray-200 hover:bg-gray-300 p-2 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button onclick="resetView()" class="bg-gray-200 hover:bg-gray-300 p-2 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative h-96">
+                    <canvas id="graphCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Como usar</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-medium text-gray-700">Funções lineares (1º grau)</h3>
+                    <p class="text-gray-600 text-sm">Exemplo: <span class="bg-gray-100 px-2 py-1 rounded">2x + 3</span>, <span class="bg-gray-100 px-2 py-1 rounded">-0.5x - 1</span></p>
+                </div>
+                <div>
+                    <h3 class="font-medium text-gray-700">Funções quadráticas (2º grau)</h3>
+                    <p class="text-gray-600 text-sm">Exemplo: <span class="bg-gray-100 px-2 py-1 rounded">x^2 - 4</span>, <span class="bg-gray-100 px-2 py-1 rounded">2x^2 + 3x - 5</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
